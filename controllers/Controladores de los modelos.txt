@@ -1,1 +1,5 @@
 aqui van los controladores de cada modelo,borrar archivo
+
+npx sequelize-cli model:generate --name Categoria --attributes nombre:string,descripcion:string,estado:integer
+npx sequelize-cli model:generate --name Articulo --attributes codigo:string,nombre:string,descripcion:string,estado:integer,categoriaID:integer
+npx sequelize-cli model:generate --name Usuario --attributes rol:string,nombre:string,password:string,email:string,estado:integer
