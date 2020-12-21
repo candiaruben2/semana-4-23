@@ -1,18 +1,14 @@
 /* un Ejemplo  de como se veria la ruta listar - modelo del  articulo*/
 const routerx = require('express-promise-router');
-const articuloController = require('../../controllers/UserController');
-//const auth = require('../../middlewares/auth');
+const userController = require('../../controllers/UserController');
+const auth = require('../../middlewares/auth');
 
 const router = routerx();
 
-
-router.post('./register', async (req, res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, 10);
-    const user = await User.create(req.body);
-    res.status(200).json(user);
-})
-
+router.post('/register',userController.register);
+//router.post('/login', auth.verifyUsuario, userController.login);
 router.post('/login', userController.login);
+router.get('/list', userController.list);
 
 
 module.exports = router;

@@ -1,15 +1,17 @@
 //Middleware de autenticacion;
+//const token = require('../services/token');
 const tokenService = require('../services/token');
+//var token_trial = require('../controllers/UserController')
 
 module.exports = {
     verifyUsuario: async(req, res, next) => {
-        if (!req.headers.token) {
+        token = tokenService.encode(req);
+        if (!token) {
             return res.status(404).send({
                 message: 'No token'
             });
         }
-        const response = await tokenService.decode(req.headers.token);
-        if (response.rol == 'Administrador' || response.rol == 'Vendedor' || response.rol == 'Almacenero') {
+        if (req.body.rol === 'Administrador' || req.body.rol === 'Vendedor' || req.body.rol === 'Almacenero' || req.body.rol === null) {
             next();
         } else {
             return res.status(403).send({
@@ -17,5 +19,4 @@ module.exports = {
             });
         }
     },
-
 }

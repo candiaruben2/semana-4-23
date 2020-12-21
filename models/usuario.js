@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Usuario.init({
-    rol: DataTypes.STRING,
+    rol: DataTypes.ENUM('Administrador','Vendedor','Almacenero'),
     nombre: DataTypes.STRING,
     password: DataTypes.STRING,
     email: DataTypes.STRING,
